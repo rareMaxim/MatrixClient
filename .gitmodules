@@ -1,0 +1,3 @@
+[submodule "MatrixaPi"]
+	path = MatrixaPi
+	url = https://github.com/rareMaxim/MatrixaPi.git
