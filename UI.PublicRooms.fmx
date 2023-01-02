@@ -1,0 +1,27 @@
+object uiPublicRooms: TuiPublicRooms
+  Size.Width = 630.000000000000000000
+  Size.Height = 418.000000000000000000
+  Size.PlatformDefault = False
+  object GroupBox1: TGroupBox
+    Align = Left
+    Padding.Top = 17.000000000000000000
+    Size.Width = 257.000000000000000000
+    Size.Height = 418.000000000000000000
+    Size.PlatformDefault = False
+    Text = 'PublicRooms'
+    TabOrder = 0
+    object ListBox1: TListBox
+      Align = Client
+      Size.Width = 257.000000000000000000
+      Size.Height = 401.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 37
+      DisableFocusEffect = True
+      DefaultItemStyles.ItemStyle = ''
+      DefaultItemStyles.GroupHeaderStyle = ''
+      DefaultItemStyles.GroupFooterStyle = ''
+      Viewport.Width = 257.000000000000000000
+      Viewport.Height = 401.000000000000000000
+    end
+  end
+end

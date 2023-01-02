@@ -1,0 +1,60 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{723BBB78-7DF4-4AD6-B977-6333DB264C70}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="ViewNavigator\ViewNavigatorLib.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MatrixaPi\MatrixaPi.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="MatrixClient.dproj">
+            <Dependencies>MatrixaPi\MatrixaPi.dproj;ViewNavigator\ViewNavigatorLib.dproj</Dependencies>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="ViewNavigatorLib">
+        <MSBuild Projects="ViewNavigator\ViewNavigatorLib.dproj"/>
+    </Target>
+    <Target Name="ViewNavigatorLib:Clean">
+        <MSBuild Projects="ViewNavigator\ViewNavigatorLib.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="ViewNavigatorLib:Make">
+        <MSBuild Projects="ViewNavigator\ViewNavigatorLib.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MatrixaPi">
+        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj"/>
+    </Target>
+    <Target Name="MatrixaPi:Clean">
+        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MatrixaPi:Make">
+        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MatrixClient" DependsOnTargets="MatrixaPi;ViewNavigatorLib">
+        <MSBuild Projects="MatrixClient.dproj"/>
+    </Target>
+    <Target Name="MatrixClient:Clean" DependsOnTargets="MatrixaPi:Clean;ViewNavigatorLib:Clean">
+        <MSBuild Projects="MatrixClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MatrixClient:Make" DependsOnTargets="MatrixaPi:Make;ViewNavigatorLib:Make">
+        <MSBuild Projects="MatrixClient.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="ViewNavigatorLib;MatrixaPi;MatrixClient"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="ViewNavigatorLib:Clean;MatrixaPi:Clean;MatrixClient:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="ViewNavigatorLib:Make;MatrixaPi:Make;MatrixClient:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

@@ -1,3 +1,6 @@
 [submodule "MatrixaPi"]
 	path = MatrixaPi
 	url = https://github.com/rareMaxim/MatrixaPi.git
+[submodule "ViewNavigator"]
+	path = ViewNavigator
+	url = https://github.com/rareMaxim/ViewNavigator.git
