@@ -6,7 +6,7 @@ uses
   ViewNavigator,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Layouts, FMX.ListBox, FMX.Controls.Presentation;
+  FMX.Layouts, FMX.ListBox, FMX.Controls.Presentation, Core.ChatApp;
 
 type
   TuiPublicRooms = class(TFrame, IvnView)
@@ -14,9 +14,11 @@ type
     ListBox1: TListBox;
   private
     { Private declarations }
-
+    FChatApp: TChatApp;
   public
     procedure DataReceive(AData: TValue);
+    constructor Create(AOwner: TComponent); override;
+    procedure GetPublicRooms;
     { Public declarations }
   end;
 
@@ -25,23 +27,41 @@ implementation
 {$R *.fmx}
 
 uses
-  Matrix.Types.Response;
+  Matrix.Types.Response, Matrix.Client;
 
 { TuiPublicRooms }
 
-procedure TuiPublicRooms.DataReceive(AData: TValue);
-var
-  lRooms: TmtrPublicRooms;
+constructor TuiPublicRooms.Create(AOwner: TComponent);
 begin
-  if AData.IsType<TmtrPublicRooms> then
+  inherited;
+
+end;
+
+procedure TuiPublicRooms.DataReceive(AData: TValue);
+begin
+  if AData.IsType<TChatApp> then
   begin
-    lRooms := AData.AsType<TmtrPublicRooms>;
-    for var LRoom in lRooms.Chunk do
-    begin
-      ListBox1.Items.Add(LRoom.Name);
-    end;
-    lRooms.Free;
+    FChatApp := AData.AsType<TChatApp>;
+    GetPublicRooms;
   end;
+end;
+
+procedure TuiPublicRooms.GetPublicRooms;
+begin
+  FChatApp.Matrix.PublicRooms(
+    procedure(ARooms: TmtrPublicRooms; AHttp: IHTTPResponse)
+    begin
+      ListBox1.BeginUpdate;
+      try
+        for var LRoom in ARooms.Chunk do
+        begin
+          ListBox1.Items.Add(LRoom.Name);
+        end;
+      finally
+        ListBox1.EndUpdate;
+        ARooms.Free;
+      end;
+    end);
 end;
 
 end.

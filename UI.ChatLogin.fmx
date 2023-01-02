@@ -1,0 +1,124 @@
+object uiChatLogin: TuiChatLogin
+  Size.Width = 691.000000000000000000
+  Size.Height = 470.000000000000000000
+  Size.PlatformDefault = False
+  object lytHomeServer: TLayout
+    Align = Top
+    Margins.Left = 28.000000000000000000
+    Margins.Top = 9.000000000000000000
+    Margins.Right = 28.000000000000000000
+    Margins.Bottom = 9.000000000000000000
+    Position.X = 28.000000000000000000
+    Position.Y = 9.000000000000000000
+    Size.Width = 635.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 2
+    object lblHomeServer: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Size.Width = 635.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Homeserver'
+      TabOrder = 0
+    end
+    object edtHomeServer: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 1
+      Text = 'https://matrix-client.matrix.org'
+      Position.Y = 19.000000000000000000
+      Size.Width = 635.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object lytLogin: TLayout
+    Align = Top
+    Margins.Left = 28.000000000000000000
+    Margins.Top = 9.000000000000000000
+    Margins.Right = 28.000000000000000000
+    Margins.Bottom = 9.000000000000000000
+    Position.X = 28.000000000000000000
+    Position.Y = 76.000000000000000000
+    Size.Width = 635.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object lblLogin: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Size.Width = 635.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Login'
+      TabOrder = 0
+    end
+    object edtLogin: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 1
+      Text = 'badbadlimon'
+      Position.Y = 19.000000000000000000
+      Size.Width = 635.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object lytPassword: TLayout
+    Align = Top
+    Margins.Left = 28.000000000000000000
+    Margins.Top = 9.000000000000000000
+    Margins.Right = 28.000000000000000000
+    Margins.Bottom = 9.000000000000000000
+    Position.X = 28.000000000000000000
+    Position.Y = 143.000000000000000000
+    Size.Width = 635.000000000000000000
+    Size.Height = 49.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    object lblPassword: TLabel
+      Align = Top
+      AutoSize = True
+      StyledSettings = [Family, Style, FontColor]
+      Size.Width = 635.000000000000000000
+      Size.Height = 19.000000000000000000
+      Size.PlatformDefault = False
+      TextSettings.Font.Size = 14.000000000000000000
+      Text = 'Password'
+      TabOrder = 0
+    end
+    object edtPassword: TEdit
+      Touch.InteractiveGestures = [LongTap, DoubleTap]
+      Align = Top
+      TabOrder = 1
+      Text = 'badbadlimon1'
+      Position.Y = 19.000000000000000000
+      Size.Width = 635.000000000000000000
+      Size.Height = 22.000000000000000000
+      Size.PlatformDefault = False
+    end
+  end
+  object Button1: TButton
+    Align = Top
+    StyledSettings = [Family, Style, FontColor]
+    Margins.Left = 28.000000000000000000
+    Margins.Top = 9.000000000000000000
+    Margins.Right = 28.000000000000000000
+    Margins.Bottom = 9.000000000000000000
+    Position.X = 28.000000000000000000
+    Position.Y = 210.000000000000000000
+    Size.Width = 635.000000000000000000
+    Size.Height = 32.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 3
+    Text = 'Enter'
+    TextSettings.Font.Size = 14.000000000000000000
+    OnClick = Button1Click
+  end
+end

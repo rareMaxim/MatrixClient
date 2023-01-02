@@ -1,4 +1,5 @@
 object uiPublicRooms: TuiPublicRooms
+  Align = Client
   Size.Width = 630.000000000000000000
   Size.Height = 418.000000000000000000
   Size.PlatformDefault = False
