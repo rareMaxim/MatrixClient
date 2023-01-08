@@ -21,8 +21,6 @@ type
     procedure btnPublicRoomsClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
-    procedure ListBox1ViewportPositionChange(Sender: TObject; const OldViewportPosition, NewViewportPosition: TPointF;
-      const ContentSizeChanged: Boolean);
   private
     { Private declarations }
 
@@ -73,12 +71,6 @@ begin
     end;
   FChatApp := TChatApp.Create;
 
-end;
-
-procedure TForm5.ListBox1ViewportPositionChange(Sender: TObject;
-  const OldViewportPosition, NewViewportPosition: TPointF; const ContentSizeChanged: Boolean);
-begin
-  Caption := NewViewportPosition.Y.ToString;
 end;
 
 end.

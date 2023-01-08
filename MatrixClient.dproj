@@ -207,7 +207,7 @@
             <DesignClass>TFrame</DesignClass>
         </DCCReference>
         <DCCReference Include="Core.ChatApp.pas"/>
-        <DCCReference Include="Unit1.pas">
+        <DCCReference Include="UI.Chat.pas">
             <Form>Frame1</Form>
             <FormType>fmx</FormType>
             <DesignClass>TFrame</DesignClass>

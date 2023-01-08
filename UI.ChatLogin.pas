@@ -7,7 +7,8 @@ uses
   Core.ChatApp,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
-  FMX.Controls.Presentation, FMX.Layouts, FMX.Edit;
+  FMX.Controls.Presentation, FMX.Layouts, FMX.Edit, FMX.Memo.Types,
+  FMX.ScrollBox, FMX.Memo;
 
 type
   TuiChatLogin = class(TFrame, IvnView)
@@ -21,6 +22,7 @@ type
     lblPassword: TLabel;
     edtPassword: TEdit;
     Button1: TButton;
+    Memo1: TMemo;
     procedure Button1Click(Sender: TObject);
   private
     { Private declarations }
@@ -59,6 +61,18 @@ begin
   if AData.IsType<TChatApp> then
   begin
     FChatApp := AData.AsType<TChatApp>;
+    FChatApp.Matrix.LoginFlows(
+      procedure(AFlows: TmtrLoginFlows; AHttp: IHTTPResponse)
+      begin
+        for var LFlow in AFlows.Flows do
+        begin
+          Memo1.Lines.Add(LFlow.&Type);
+          if LFlow.IdentityProviders <> nil then
+            for var LProvider in LFlow.IdentityProviders do
+              Memo1.Lines.Add('     ' + LProvider.Name)
+        end;
+        AFlows.Free;
+      end);
   end;
 end;
 
