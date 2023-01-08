@@ -17,6 +17,8 @@ type
     ToolBar1: TToolBar;
     btnLogin: TSpeedButton;
     btnPublicRooms: TSpeedButton;
+    btnChat: TSpeedButton;
+    procedure btnChatClick(Sender: TObject);
     procedure btnLoginClick(Sender: TObject);
     procedure btnPublicRoomsClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
@@ -38,10 +40,16 @@ implementation
 uses
   FMX.DialogService,
   Matrix.Types.Response,
+  UI.Chat,
   UI.ChatLogin,
   UI.PublicRooms;
 
 {$R *.fmx}
+
+procedure TForm5.btnChatClick(Sender: TObject);
+begin
+  FNav.Navigate(TuiChat, FChatApp);
+end;
 
 procedure TForm5.btnLoginClick(Sender: TObject);
 begin
@@ -64,13 +72,21 @@ begin
   ReportMemoryLeaksOnShutdown := True;
   FNav := TViewNavigator.Create(nil);
   FNav.Parent := Layout1;
-  FNav.RegisterFrame([TuiPublicRooms, TuiChatLogin]);
+  FNav.RegisterFrame([TuiPublicRooms, TuiChatLogin, TuiChat]);
+  FNav.OnNavigateCallback := procedure(AView: TvnViewInfo)
+    begin
+      if AView.Name = TuiChatLogin.ClassName then
+        btnLogin.IsPressed := True
+      else if AView.Name = TuiChat.ClassName then
+        btnChat.IsPressed := True;
+    end;
   FNav.OnNavigationFailedCallback := procedure(APage: string)
     begin
       TDialogService.ShowMessage('ViewNavigator - Page not found: ' + APage)
     end;
   FChatApp := TChatApp.Create;
-
+  FNav.SendData(TuiChatLogin, FNav);
+  FNav.Navigate(TuiChatLogin, FChatApp);
 end;
 
 end.

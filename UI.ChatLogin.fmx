@@ -68,6 +68,14 @@ object uiChatLogin: TuiChatLogin
       Size.Width = 635.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
+      object ComboBox1: TComboBox
+        Align = Right
+        Position.X = 512.000000000000000000
+        Size.Width = 123.000000000000000000
+        Size.Height = 22.000000000000000000
+        Size.PlatformDefault = False
+        TabOrder = 0
+      end
     end
   end
   object lytPassword: TLayout
@@ -125,12 +133,33 @@ object uiChatLogin: TuiChatLogin
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
     Align = Top
-    Position.Y = 251.000000000000000000
+    Position.Y = 313.000000000000000000
     Size.Width = 691.000000000000000000
-    Size.Height = 166.000000000000000000
+    Size.Height = 62.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
     Viewport.Width = 691.000000000000000000
-    Viewport.Height = 166.000000000000000000
+    Viewport.Height = 62.000000000000000000
+  end
+  object Layout1: TLayout
+    Align = Top
+    Position.Y = 251.000000000000000000
+    Size.Width = 691.000000000000000000
+    Size.Height = 62.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 6
+  end
+  object Image1: TImage
+    MultiResBitmap = <
+      item
+      end>
+    Position.X = 416.000000000000000000
+    Position.Y = 384.000000000000000000
+  end
+  object ImageList1: TImageList
+    Source = <>
+    Destination = <>
+    Left = 304
+    Top = 328
   end
 end

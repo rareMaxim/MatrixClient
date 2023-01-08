@@ -12,6 +12,9 @@
         <Projects Include="MatrixClient.dproj">
             <Dependencies>MatrixaPi\MatrixaPi.dproj;ViewNavigator\ViewNavigatorLib.dproj</Dependencies>
         </Projects>
+        <Projects Include="MatrixaPi\Citrus\CitrusCE.dproj">
+            <Dependencies/>
+        </Projects>
     </ItemGroup>
     <ProjectExtensions>
         <Borland.Personality>Default.Personality.12</Borland.Personality>
@@ -47,14 +50,23 @@
     <Target Name="MatrixClient:Make" DependsOnTargets="MatrixaPi:Make;ViewNavigatorLib:Make">
         <MSBuild Projects="MatrixClient.dproj" Targets="Make"/>
     </Target>
+    <Target Name="CitrusCE">
+        <MSBuild Projects="MatrixaPi\Citrus\CitrusCE.dproj"/>
+    </Target>
+    <Target Name="CitrusCE:Clean">
+        <MSBuild Projects="MatrixaPi\Citrus\CitrusCE.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CitrusCE:Make">
+        <MSBuild Projects="MatrixaPi\Citrus\CitrusCE.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="ViewNavigatorLib;MatrixaPi;MatrixClient"/>
+        <CallTarget Targets="ViewNavigatorLib;MatrixaPi;MatrixClient;CitrusCE"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ViewNavigatorLib:Clean;MatrixaPi:Clean;MatrixClient:Clean"/>
+        <CallTarget Targets="ViewNavigatorLib:Clean;MatrixaPi:Clean;MatrixClient:Clean;CitrusCE:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ViewNavigatorLib:Make;MatrixaPi:Make;MatrixClient:Make"/>
+        <CallTarget Targets="ViewNavigatorLib:Make;MatrixaPi:Make;MatrixClient:Make;CitrusCE:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>
