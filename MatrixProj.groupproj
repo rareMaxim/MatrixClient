@@ -3,17 +3,14 @@
         <ProjectGuid>{723BBB78-7DF4-4AD6-B977-6333DB264C70}</ProjectGuid>
     </PropertyGroup>
     <ItemGroup>
-        <Projects Include="ViewNavigator\ViewNavigatorLib.dproj">
+        <Projects Include="MatrixaPi\Citrus\CitrusCE.dproj">
             <Dependencies/>
         </Projects>
         <Projects Include="MatrixaPi\MatrixaPi.dproj">
-            <Dependencies/>
+            <Dependencies>MatrixaPi\Citrus\CitrusCE.dproj</Dependencies>
         </Projects>
         <Projects Include="MatrixClient.dproj">
-            <Dependencies>MatrixaPi\MatrixaPi.dproj;ViewNavigator\ViewNavigatorLib.dproj</Dependencies>
-        </Projects>
-        <Projects Include="MatrixaPi\Citrus\CitrusCE.dproj">
-            <Dependencies/>
+            <Dependencies>MatrixaPi\MatrixaPi.dproj</Dependencies>
         </Projects>
     </ItemGroup>
     <ProjectExtensions>
@@ -23,33 +20,6 @@
             <Default.Personality/>
         </BorlandProject>
     </ProjectExtensions>
-    <Target Name="ViewNavigatorLib">
-        <MSBuild Projects="ViewNavigator\ViewNavigatorLib.dproj"/>
-    </Target>
-    <Target Name="ViewNavigatorLib:Clean">
-        <MSBuild Projects="ViewNavigator\ViewNavigatorLib.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="ViewNavigatorLib:Make">
-        <MSBuild Projects="ViewNavigator\ViewNavigatorLib.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="MatrixaPi">
-        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj"/>
-    </Target>
-    <Target Name="MatrixaPi:Clean">
-        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="MatrixaPi:Make">
-        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj" Targets="Make"/>
-    </Target>
-    <Target Name="MatrixClient" DependsOnTargets="MatrixaPi;ViewNavigatorLib">
-        <MSBuild Projects="MatrixClient.dproj"/>
-    </Target>
-    <Target Name="MatrixClient:Clean" DependsOnTargets="MatrixaPi:Clean;ViewNavigatorLib:Clean">
-        <MSBuild Projects="MatrixClient.dproj" Targets="Clean"/>
-    </Target>
-    <Target Name="MatrixClient:Make" DependsOnTargets="MatrixaPi:Make;ViewNavigatorLib:Make">
-        <MSBuild Projects="MatrixClient.dproj" Targets="Make"/>
-    </Target>
     <Target Name="CitrusCE">
         <MSBuild Projects="MatrixaPi\Citrus\CitrusCE.dproj"/>
     </Target>
@@ -59,14 +29,32 @@
     <Target Name="CitrusCE:Make">
         <MSBuild Projects="MatrixaPi\Citrus\CitrusCE.dproj" Targets="Make"/>
     </Target>
+    <Target Name="MatrixaPi" DependsOnTargets="CitrusCE">
+        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj"/>
+    </Target>
+    <Target Name="MatrixaPi:Clean" DependsOnTargets="CitrusCE:Clean">
+        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MatrixaPi:Make" DependsOnTargets="CitrusCE:Make">
+        <MSBuild Projects="MatrixaPi\MatrixaPi.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="MatrixClient" DependsOnTargets="MatrixaPi">
+        <MSBuild Projects="MatrixClient.dproj"/>
+    </Target>
+    <Target Name="MatrixClient:Clean" DependsOnTargets="MatrixaPi:Clean">
+        <MSBuild Projects="MatrixClient.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="MatrixClient:Make" DependsOnTargets="MatrixaPi:Make">
+        <MSBuild Projects="MatrixClient.dproj" Targets="Make"/>
+    </Target>
     <Target Name="Build">
-        <CallTarget Targets="ViewNavigatorLib;MatrixaPi;MatrixClient;CitrusCE"/>
+        <CallTarget Targets="CitrusCE;MatrixaPi;MatrixClient"/>
     </Target>
     <Target Name="Clean">
-        <CallTarget Targets="ViewNavigatorLib:Clean;MatrixaPi:Clean;MatrixClient:Clean;CitrusCE:Clean"/>
+        <CallTarget Targets="CitrusCE:Clean;MatrixaPi:Clean;MatrixClient:Clean"/>
     </Target>
     <Target Name="Make">
-        <CallTarget Targets="ViewNavigatorLib:Make;MatrixaPi:Make;MatrixClient:Make;CitrusCE:Make"/>
+        <CallTarget Targets="CitrusCE:Make;MatrixaPi:Make;MatrixClient:Make"/>
     </Target>
     <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
 </Project>

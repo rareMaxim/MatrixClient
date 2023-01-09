@@ -25,11 +25,9 @@ type
     procedure FormCreate(Sender: TObject);
   private
     { Private declarations }
-
     FNav: TViewNavigator;
     FChatApp: TChatApp;
   public
-    { Public declarations }
   end;
 
 var
