@@ -3,14 +3,13 @@
 interface
 
 uses
-  Matrix.Types.Response,
   ViewNavigator,
   Core.ChatApp,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Layouts, FMX.Edit, FMX.Memo.Types,
   FMX.ScrollBox, FMX.Memo, FMX.ExtCtrls, FMX.ListBox, System.ImageList,
-  FMX.ImgList, FMX.Objects;
+  FMX.ImgList, FMX.Objects, MatrixaPi.Types.Response;
 
 type
   TuiChatLogin = class(TFrame, IvnView)
@@ -45,7 +44,7 @@ implementation
 
 uses
 
-  Matrix.Client;
+  MatrixaPi;
 
 {$R *.fmx}
 
@@ -70,7 +69,6 @@ end;
 
 procedure TuiChatLogin.Button1Click(Sender: TObject);
 begin
-  FChatApp.Matrix.BaseAddress := edtHomeServer.Text;
   FChatApp.Matrix.LoginWithPassword(
     procedure(ALogin: TmtrLogin; AHttp: IHTTPResponse)
     begin
@@ -83,7 +81,7 @@ begin
         begin
           FViewNavigator.Navigate('TuiChat');
         end);
-    end, edtLogin.Text, edtPassword.Text);
+    end, edtHomeServer.Text, edtLogin.Text, edtPassword.Text, 'Matrix Client by Delphi');
 end;
 
 { TuiChatLogin }

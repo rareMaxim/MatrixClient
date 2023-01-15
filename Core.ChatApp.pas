@@ -3,16 +3,17 @@
 interface
 
 uses
-  Matrix.Client;
+  MatrixaPi;
 
 type
   TChatApp = class
   private
-    FMatrix: TMatrixaPi;
+    FMatrixFactory: TMatrixClientFactory;
+    FMatrix: IMatrixaPI;
   public
     constructor Create;
     destructor Destroy; override;
-    property Matrix: TMatrixaPi read FMatrix write FMatrix;
+    property Matrix: IMatrixaPI read FMatrix write FMatrix;
   end;
 
 implementation
@@ -21,13 +22,13 @@ implementation
 
 constructor TChatApp.Create;
 begin
-  FMatrix := TMatrixaPi.Create();
-  FMatrix.IsSyncMode := False;
+  FMatrixFactory := TMatrixClientFactory.Create;
+  FMatrix := FMatrixFactory.CreateASyncClient;
 end;
 
 destructor TChatApp.Destroy;
 begin
-  FMatrix.Free;
+  FMatrixFactory.Free;
   inherited;
 end;
 

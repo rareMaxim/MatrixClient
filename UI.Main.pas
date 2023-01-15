@@ -4,7 +4,7 @@ interface
 
 uses
   ViewNavigator,
-  Matrix.Client,
+  MatrixaPi,
   Core.ChatApp,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Controls, FMX.Forms, FMX.Graphics, FMX.Dialogs, FMX.TabControl,
@@ -37,7 +37,6 @@ implementation
 
 uses
   FMX.DialogService,
-  Matrix.Types.Response,
   UI.Chat,
   UI.ChatLogin,
   UI.PublicRooms;

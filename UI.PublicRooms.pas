@@ -24,11 +24,10 @@ type
 
 implementation
 
-{$R *.fmx}
-
 uses
-  Matrix.Types.Response, Matrix.Client;
+  MatrixaPi.Types.Response, System.Net.HttpClient;
 
+{$R *.fmx}
 { TuiPublicRooms }
 
 constructor TuiPublicRooms.Create(AOwner: TComponent);
