@@ -2,4 +2,15 @@ object uiChat: TuiChat
   Size.Width = 612.000000000000000000
   Size.Height = 441.000000000000000000
   Size.PlatformDefault = False
+  object Memo1: TMemo
+    Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+    DataDetectorTypes = []
+    Align = Left
+    Size.Width = 201.000000000000000000
+    Size.Height = 441.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 0
+    Viewport.Width = 201.000000000000000000
+    Viewport.Height = 441.000000000000000000
+  end
 end

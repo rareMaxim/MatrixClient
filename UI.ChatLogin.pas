@@ -3,16 +3,18 @@
 interface
 
 uses
+  Citrus.Mandarin,
   ViewNavigator,
   Core.ChatApp,
   System.SysUtils, System.Types, System.UITypes, System.Classes, System.Variants,
   FMX.Types, FMX.Graphics, FMX.Controls, FMX.Forms, FMX.Dialogs, FMX.StdCtrls,
   FMX.Controls.Presentation, FMX.Layouts, FMX.Edit, FMX.Memo.Types,
   FMX.ScrollBox, FMX.Memo, FMX.ExtCtrls, FMX.ListBox, System.ImageList,
-  FMX.ImgList, FMX.Objects, MatrixaPi.Types.Response;
+  FMX.ImgList, FMX.Objects, MatrixaPi.Types.Response,
+  MatrixaPi.Core.Infrastructure.Dto.Login;
 
 type
-  TuiChatLogin = class(TFrame, IvnView)
+  TuiChatLogin = class(TFrame, IvnView, IvnChangeState)
     lytHomeServer: TLayout;
     lblHomeServer: TLabel;
     edtHomeServer: TEdit;
@@ -29,13 +31,16 @@ type
     Layout1: TLayout;
     Image1: TImage;
     procedure Button1Click(Sender: TObject);
+    procedure edtHomeServerExit(Sender: TObject);
   private
     { Private declarations }
     FChatApp: TChatApp;
     FViewNavigator: TViewNavigator;
+    FGroupMandarin: TMandarinClientGroupe;
     procedure AddSSoProvider(AProv: TmtrLoginFlows.TIdentityProviders);
   public
     procedure DataReceive(AData: TValue);
+    procedure ViewNavigatorChangeState(AStates: TvnViewInfoStates);
     { Public declarations }
 
   end;
@@ -75,6 +80,7 @@ begin
       FChatApp.Matrix.Authenticator.AccessToken := ALogin.AccessToken;
       FChatApp.Matrix.Start;
       Button1.Text := ALogin.UserId;
+      FChatApp.Matrix.Start();
       ALogin.Free;
       TThread.Synchronize(nil,
         procedure
@@ -93,11 +99,25 @@ begin
   else if AData.IsType<TChatApp> then
   begin
     FChatApp := AData.AsType<TChatApp>;
-    FChatApp.Matrix.LoginFlows(
-      procedure(AFlows: TmtrLoginFlows; AHttp: IHTTPResponse)
+    FChatApp.Matrix.BaseAddress := edtHomeServer.Text;
+    FGroupMandarin := TMandarinClientGroupe.Create(FChatApp.MatrixFactory.GetMandarinClient);
+  end;
+
+end;
+
+procedure TuiChatLogin.edtHomeServerExit(Sender: TObject);
+begin
+  FChatApp.Matrix.LoginFlows(
+    procedure(AFlows: TmtrLoginFlows; AHttp: IHTTPResponse)
+    begin
+      Layout1.DeleteChildren;
+
+      //        TThread.Queue(nil,
+      //          procedure
       begin
         for var LFlow in AFlows.Flows do
         begin
+
           Memo1.Lines.Add(LFlow.&Type);
           if LFlow.IdentityProviders <> nil then
           begin
@@ -111,9 +131,20 @@ begin
           begin
             ComboBox1.Items.Add(LFlow.&Type)
           end;
+
         end;
         AFlows.Free;
-      end);
+      end;
+      //          end);
+
+    end, edtHomeServer.Text);
+end;
+
+procedure TuiChatLogin.ViewNavigatorChangeState(AStates: TvnViewInfoStates);
+begin
+  if TvnViewInfoState.IsVisible in AStates then
+  begin
+
   end;
 end;
 

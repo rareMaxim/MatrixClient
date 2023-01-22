@@ -23,11 +23,14 @@ type
     procedure btnPublicRoomsClick(Sender: TObject);
     procedure FormDestroy(Sender: TObject);
     procedure FormCreate(Sender: TObject);
+    procedure FormShow(Sender: TObject);
+
   private
     { Private declarations }
     FNav: TViewNavigator;
     FChatApp: TChatApp;
   public
+    procedure AfterConstruction; override;
   end;
 
 var
@@ -42,6 +45,12 @@ uses
   UI.PublicRooms;
 
 {$R *.fmx}
+
+procedure TForm5.AfterConstruction;
+begin
+  inherited;
+
+end;
 
 procedure TForm5.btnChatClick(Sender: TObject);
 begin
@@ -82,8 +91,14 @@ begin
       TDialogService.ShowMessage('ViewNavigator - Page not found: ' + APage)
     end;
   FChatApp := TChatApp.Create;
+
+end;
+
+procedure TForm5.FormShow(Sender: TObject);
+begin
   FNav.SendData(TuiChatLogin, FNav);
   FNav.Navigate(TuiChatLogin, FChatApp);
+  FNav.SendData(TuiChat, FChatApp);
 end;
 
 end.

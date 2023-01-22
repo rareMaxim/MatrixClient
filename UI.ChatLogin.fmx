@@ -34,6 +34,7 @@ object uiChatLogin: TuiChatLogin
       Size.Width = 635.000000000000000000
       Size.Height = 22.000000000000000000
       Size.PlatformDefault = False
+      OnExit = edtHomeServerExit
     end
   end
   object lytLogin: TLayout
@@ -138,8 +139,8 @@ object uiChatLogin: TuiChatLogin
     Size.Height = 62.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 4
-    Viewport.Width = 691.000000000000000000
-    Viewport.Height = 62.000000000000000000
+    Viewport.Width = 687.000000000000000000
+    Viewport.Height = 58.000000000000000000
   end
   object Layout1: TLayout
     Align = Top

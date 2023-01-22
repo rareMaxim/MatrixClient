@@ -13,6 +13,7 @@ type
   public
     constructor Create;
     destructor Destroy; override;
+    property MatrixFactory: TMatrixClientFactory read FMatrixFactory write FMatrixFactory;
     property Matrix: IMatrixaPI read FMatrix write FMatrix;
   end;
 

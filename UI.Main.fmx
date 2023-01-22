@@ -9,6 +9,7 @@ object Form5: TForm5
   FormFactor.Devices = [Desktop]
   OnCreate = FormCreate
   OnDestroy = FormDestroy
+  OnShow = FormShow
   DesignerMasterStyle = 0
   object Layout1: TLayout
     Align = Client
