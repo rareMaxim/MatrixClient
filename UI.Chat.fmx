@@ -6,11 +6,29 @@ object uiChat: TuiChat
     Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
     DataDetectorTypes = []
     Align = Left
-    Size.Width = 201.000000000000000000
+    Size.Width = 161.000000000000000000
     Size.Height = 441.000000000000000000
     Size.PlatformDefault = False
     TabOrder = 0
-    Viewport.Width = 201.000000000000000000
-    Viewport.Height = 441.000000000000000000
+    Viewport.Width = 157.000000000000000000
+    Viewport.Height = 437.000000000000000000
+  end
+  object Layout1: TLayout
+    Align = Client
+    Size.Width = 451.000000000000000000
+    Size.Height = 441.000000000000000000
+    Size.PlatformDefault = False
+    TabOrder = 1
+    object Memo2: TMemo
+      Touch.InteractiveGestures = [Pan, LongTap, DoubleTap]
+      DataDetectorTypes = []
+      Align = Top
+      Size.Width = 451.000000000000000000
+      Size.Height = 169.000000000000000000
+      Size.PlatformDefault = False
+      TabOrder = 0
+      Viewport.Width = 447.000000000000000000
+      Viewport.Height = 165.000000000000000000
+    end
   end
 end

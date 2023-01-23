@@ -91,7 +91,6 @@ begin
       TDialogService.ShowMessage('ViewNavigator - Page not found: ' + APage)
     end;
   FChatApp := TChatApp.Create;
-
 end;
 
 procedure TForm5.FormShow(Sender: TObject);
