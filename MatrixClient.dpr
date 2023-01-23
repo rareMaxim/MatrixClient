@@ -7,8 +7,7 @@ uses
   UI.PublicRooms in 'UI.PublicRooms.pas' {uiPublicRooms: TFrame},
   UI.ChatLogin in 'UI.ChatLogin.pas' {uiChatLogin: TFrame},
   Core.ChatApp in 'Core.ChatApp.pas',
-  UI.Chat in 'UI.Chat.pas' {uiChat: TFrame},
-  Core.ChatLogin in 'Core.ChatLogin.pas';
+  UI.Chat in 'UI.Chat.pas' {uiChat: TFrame};
 
 {$R *.res}
 

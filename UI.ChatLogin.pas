@@ -14,7 +14,7 @@ uses
   MatrixaPi.Core.Infrastructure.Dto.Login;
 
 type
-  TuiChatLogin = class(TFrame, IvnView, IvnChangeState)
+  TuiChatLogin = class(TFrame, IvnView)
     lytHomeServer: TLayout;
     lblHomeServer: TLabel;
     edtHomeServer: TEdit;
@@ -36,7 +36,6 @@ type
     { Private declarations }
     FChatApp: TChatApp;
     FViewNavigator: TViewNavigator;
-    FGroupMandarin: TMandarinClientGroupe;
     procedure AddSSoProvider(AProv: TmtrLoginFlows.TIdentityProviders);
   public
     procedure DataReceive(AData: TValue);
@@ -100,7 +99,6 @@ begin
   begin
     FChatApp := AData.AsType<TChatApp>;
     FChatApp.Matrix.BaseAddress := edtHomeServer.Text;
-    FGroupMandarin := TMandarinClientGroupe.Create(FChatApp.MatrixFactory.GetMandarinClient);
   end;
 
 end;

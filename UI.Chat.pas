@@ -38,8 +38,8 @@ begin
     begin
       for var LEvent in AEvents do
       begin
-        if LEvent is TJoinRoomEvent then
-          Memo1.Lines.Add((LEvent as TJoinRoomEvent).RoomId);
+        if LEvent is TNameRoomEvent then
+          Memo1.Lines.Add((LEvent as TNameRoomEvent).Name);
       end;
     end;
 end;
